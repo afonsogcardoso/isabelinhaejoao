@@ -1,0 +1,40 @@
+---
+import MapButtons from './MapButtons.astro';
+
+interface CalendarEvent {
+  title: string;
+  description: string;
+  location: string;
+  start: string;
+  end: string;
+  fileName: string;
+}
+
+interface EventData {
+  title: string;
+  date: string;
+  time: string;
+  location: string;
+  address: string;
+  googleMapsUrl: string;
+  appleMapsUrl: string;
+  calendar: CalendarEvent;
+}
+
+interface Props {
+  event: EventData;
+}
+
+const { event } = Astro.props;
+---
+
+<article class="event-card">
+  <h3>{event.title}</h3>
+  <div class="event-meta">
+    <p><strong>Data:</strong> {event.date}</p>
+    <p><strong>Hora:</strong> {event.time}</p>
+    <p><strong>Local:</strong> {event.location}</p>
+    <p><strong>Morada:</strong> {event.address}</p>
+  </div>
+  <MapButtons googleMapsUrl={event.googleMapsUrl} appleMapsUrl={event.appleMapsUrl} calendarEvent={event.calendar} />
+</article>

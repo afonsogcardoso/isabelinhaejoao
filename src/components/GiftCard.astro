@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  price: string;
+  imageSrc?: string;
+  imageAlt?: string;
+}
+
+const {
+  title,
+  price,
+  imageSrc = 'https://picsum.photos/seed/presente-2026/900/600.webp',
+  imageAlt = 'Imagem ilustrativa de presente'
+} = Astro.props;
+---
+
+<article class="gift-card" data-gift-card>
+  <img data-gift-image src={imageSrc} alt={imageAlt} loading="lazy" decoding="async" />
+  <div class="gift-card-body">
+    <h3 data-gift-title>{title}</h3>
+    <p data-gift-price>{price}</p>
+  </div>
+</article>

@@ -1,0 +1,53 @@
+---
+interface CalendarEvent {
+  title: string;
+  description: string;
+  location: string;
+  start: string;
+  end: string;
+  fileName: string;
+}
+
+interface Props {
+  event: CalendarEvent;
+}
+
+const { event } = Astro.props;
+
+const formatUtc = (value: string) => {
+  const date = new Date(value);
+  const iso = date.toISOString();
+  return iso.replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+};
+
+const sanitize = (value: string) =>
+  value
+    .replace(/\\/g, '\\\\')
+    .replace(/;/g, '\\;')
+    .replace(/,/g, '\\,')
+    .replace(/\n/g, '\\n');
+
+const uid = `${event.fileName}-${formatUtc(event.start)}@isabelinhaejoao`;
+const ics = [
+  'BEGIN:VCALENDAR',
+  'VERSION:2.0',
+  'PRODID:-//Isabelinha e João//Casamento//PT',
+  'CALSCALE:GREGORIAN',
+  'BEGIN:VEVENT',
+  `UID:${uid}`,
+  `DTSTAMP:${formatUtc(new Date().toISOString())}`,
+  `DTSTART:${formatUtc(event.start)}`,
+  `DTEND:${formatUtc(event.end)}`,
+  `SUMMARY:${sanitize(event.title)}`,
+  `DESCRIPTION:${sanitize(event.description)}`,
+  `LOCATION:${sanitize(event.location)}`,
+  'END:VEVENT',
+  'END:VCALENDAR'
+].join('\r\n');
+
+const href = `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`;
+---
+
+<a class="btn btn-secondary" href={href} download={event.fileName} aria-label={`Adicionar ao calendário: ${event.title}`}>
+  Adicionar ao calendário
+</a>

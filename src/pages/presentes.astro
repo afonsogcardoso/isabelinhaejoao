@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GiftCard from '../components/GiftCard.astro';
+import giftsContent from '../content/presentes.json';
+
+const { introducao, introducao2, detalhesPagamento, itens } = giftsContent;
+---
+
+<BaseLayout title="Presentes · Isabelinha e João" description="Informações de presentes do casamento.">
+  <section class="section section-page-head">
+    <div class="container">
+      <header class="page-head">
+        <h1>Presentes</h1>
+      </header>
+
+      <div class="gifts-shell">
+
+        <p class="section-intro" style="margin-top: 0.8rem;">{introducao}</p>
+        <p class="section-intro" style="margin-top: 0.8rem;">{introducao2}</p>
+
+        <ul class="payment-list" aria-label="Detalhes de pagamento">
+          {detalhesPagamento.map((line) => <li>{line}</li>)}
+        </ul>
+
+        <div class="gift-grid" aria-live="polite">
+          {
+            itens.map((item) => (
+              <GiftCard
+                title={item.nome}
+                price={item.valor}
+                imageSrc={item.imagem}
+                imageAlt={`Imagem ilustrativa: ${item.nome}`}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

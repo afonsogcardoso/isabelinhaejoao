@@ -1,0 +1,51 @@
+---
+import Navbar from '../components/Navbar.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = 'Casamento Isabelinha e João',
+  description = 'Site oficial do casamento de Isabelinha e João.',
+  noindex = false
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const basePath = import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#7a7366" />
+    {noindex ? <meta name="robots" content="noindex, nofollow" /> : null}
+    <link rel="icon" type="image/svg+xml" href={`${basePath}favicon.svg`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Navbar currentPath={currentPath} basePath={basePath} />
+    <main class="page-main">
+      <slot />
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <p><strong>Isabelinha e João</strong></p>
+        <p>18 de Julho de 2026</p>
+        <p>Salvaterra de Magos</p>
+      </div>
+    </footer>
+  </body>
+</html>

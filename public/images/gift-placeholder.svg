@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-label="Imagem de presente">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e8efe4" />
+      <stop offset="100%" stop-color="#d6e4d5" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#bg)" rx="24"/>
+  <g fill="none" stroke="#2f6f55" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0.8">
+    <path d="M232 304h336v128H232z"/>
+    <path d="M400 304v128"/>
+    <path d="M232 352h336"/>
+    <path d="M288 304c-28-28-28-72 8-84 28-10 56 16 64 50"/>
+    <path d="M512 304c28-28 28-72-8-84-28-10-56 16-64 50"/>
+  </g>
+</svg>

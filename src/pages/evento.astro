@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EventCard from '../components/EventCard.astro';
+import siteContent from '../content/site.json';
+
+const { events } = siteContent;
+---
+
+<BaseLayout title="O dia 18 · Isabelinha e João" description="Agenda, locais e mapas do dia do casamento.">
+  <section class="section section-page-head">
+    <div class="container">
+      <header class="page-head">
+        <h1>O dia 18</h1>
+        <p>O nosso dia, passo a passo, para estares connosco do início ao fim.</p>
+      </header>
+
+      <div class="timeline" aria-label="Timeline do dia 18">
+        {
+          events.map((event, index) => (
+            <div class="timeline-item">
+              <span class="timeline-point" aria-hidden="true">{index + 1}</span>
+              <EventCard event={event} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

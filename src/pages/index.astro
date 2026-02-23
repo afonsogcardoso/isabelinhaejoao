@@ -1,0 +1,62 @@
+---
+import { existsSync, readdirSync } from 'node:fs';
+import { extname } from 'node:path';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ImageCarousel from '../components/ImageCarousel.astro';
+import siteContent from '../content/site.json';
+
+const { site, about, carouselImages: fallbackCarouselImages } = siteContent;
+const basePath = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${basePath}${path.replace(/^\//, '')}`;
+
+const carouselDirUrl = new URL('../../public/images/carrossel/', import.meta.url);
+const supportedExtensions = new Set(['.avif', '.webp', '.jpg', '.jpeg', '.png', '.gif']);
+
+const makeAltFromFileName = (fileName: string) =>
+  fileName
+    .replace(/\.[^.]+$/, '')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/^./, (char) => char.toUpperCase());
+
+const localCarouselImages = existsSync(carouselDirUrl)
+  ? readdirSync(carouselDirUrl, { withFileTypes: true })
+      .filter((entry) => entry.isFile() && supportedExtensions.has(extname(entry.name).toLowerCase()))
+      .map((entry) => entry.name)
+      .sort((a, b) => a.localeCompare(b, 'pt', { numeric: true, sensitivity: 'base' }))
+      .map((fileName) => ({
+        src: `${basePath}images/carrossel/${encodeURIComponent(fileName)}`,
+        alt: makeAltFromFileName(fileName)
+      }))
+  : [];
+
+const carouselImages = localCarouselImages.length > 0 ? localCarouselImages : fallbackCarouselImages;
+---
+
+<BaseLayout title="Início · Isabelinha e João" description={site.description}>
+  <Hero
+    names={site.names}
+    date={site.date}
+    location={site.location}
+    eventHref={withBase('/evento/')}
+    giftsHref={withBase('/presentes/')}
+    countdownTarget={site.dateIso}
+  />
+
+  <section class="section section-home-carousel" aria-label="Galeria de imagens">
+    <div class="container">
+      <ImageCarousel images={carouselImages} />
+    </div>
+  </section>
+
+  <section class="section section-home-about" aria-labelledby="sobre-nos">
+    <div class="container">
+      <div class="home-about">
+        <h2 class="section-title" id="sobre-nos">Sobre nós</h2>
+        <p class="about-text">{about}</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,125 @@
+---
+interface ImageItem {
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  images: ImageItem[];
+}
+
+const { images } = Astro.props;
+const carouselId = `carousel-${Math.random().toString(36).slice(2, 10)}`;
+---
+
+<section class="carousel" aria-label="Galeria de imagens">
+  <div class="carousel-shell" data-carousel id={carouselId}>
+    <ul class="carousel-track" data-carousel-track>
+      {
+        images.map((image, index) => (
+          <li class="carousel-slide" data-carousel-slide>
+            <figure class="carousel-figure">
+              <img
+                src={image.src}
+                alt={image.alt}
+                class="carousel-image"
+                data-carousel-image
+                loading="lazy"
+                decoding="async"
+                width="1500"
+                height="1000"
+              />
+            </figure>
+            <span class="sr-only">Imagem {index + 1} de {images.length}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<script>
+  const carousels = document.querySelectorAll('[data-carousel]');
+
+  carousels.forEach((carousel) => {
+    if (carousel.dataset.enhanced === 'true') return;
+    carousel.dataset.enhanced = 'true';
+
+    const track = carousel.querySelector('[data-carousel-track]');
+    const slides = Array.from(carousel.querySelectorAll('[data-carousel-slide]'));
+
+    if (!track || slides.length === 0) return;
+
+    const setOrientation = (image) => {
+      const applyOrientation = () => {
+        const isPortrait = image.naturalHeight > image.naturalWidth;
+        image.setAttribute('data-orientation', isPortrait ? 'portrait' : 'landscape');
+      };
+
+      if (image.complete) applyOrientation();
+      else image.addEventListener('load', applyOrientation, { once: true });
+    };
+
+    track.querySelectorAll('[data-carousel-image]').forEach((image) => {
+      setOrientation(image);
+    });
+
+    if (slides.length < 2) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    slides.forEach((slide) => {
+      track.appendChild(slide.cloneNode(true));
+    });
+
+    track.querySelectorAll('[data-carousel-image]').forEach((image) => {
+      setOrientation(image);
+    });
+
+    track.style.transition = 'none';
+
+    let rafId = null;
+    let previousTimestamp = performance.now();
+    let offset = 0;
+    let slideWidth = carousel.clientWidth;
+    let loopWidth = slideWidth * slides.length;
+    let pixelsPerSecond = slideWidth / 5.8;
+
+    const animate = (timestamp) => {
+      const delta = Math.max(0, (timestamp - previousTimestamp) / 1000);
+      previousTimestamp = timestamp;
+      offset += pixelsPerSecond * delta;
+
+      if (offset >= loopWidth) {
+        offset -= loopWidth;
+      }
+
+      track.style.transform = `translate3d(-${offset}px, 0, 0)`;
+      rafId = window.requestAnimationFrame(animate);
+    };
+
+    const refreshSizes = () => {
+      const progress = loopWidth > 0 ? offset / loopWidth : 0;
+      slideWidth = carousel.clientWidth;
+      loopWidth = slideWidth * slides.length;
+      pixelsPerSecond = slideWidth / 5.8;
+      offset = progress * loopWidth;
+      track.style.transform = `translate3d(-${offset}px, 0, 0)`;
+    };
+
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        if (rafId) {
+          window.cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+      } else {
+        previousTimestamp = performance.now();
+        if (!rafId) rafId = window.requestAnimationFrame(animate);
+      }
+    };
+
+    window.addEventListener('resize', refreshSizes);
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    rafId = window.requestAnimationFrame(animate);
+  });
+</script>

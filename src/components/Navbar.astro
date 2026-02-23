@@ -1,0 +1,79 @@
+---
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  currentPath: string;
+  basePath: string;
+}
+
+const { currentPath, basePath } = Astro.props;
+
+const navItems: NavItem[] = [
+  { label: 'Início', href: '/' },
+  { label: 'O dia 18', href: '/evento/' },
+  { label: 'Presentes', href: '/presentes/' },
+  { label: 'FAQ', href: '/faq/' }
+];
+
+const withBase = (path: string) => `${basePath}${path.replace(/^\//, '')}`;
+
+const normalizedCurrentPath = (() => {
+  if (basePath !== '/' && currentPath.startsWith(basePath)) {
+    const withoutBase = currentPath.slice(basePath.length);
+    return `/${withoutBase}`.replace(/\/+$/, '/') || '/';
+  }
+  return currentPath.replace(/\/+$/, '/') || '/';
+})();
+---
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" data-nav-toggle>
+      <span class="sr-only">Abrir menu</span>
+      ☰
+    </button>
+
+    <nav id="menu-principal" class="nav-menu" data-nav-menu aria-label="Navegação principal">
+      {
+        navItems.map((item) => {
+          const active = normalizedCurrentPath === item.href;
+          return (
+            <a class={`nav-link ${active ? 'is-active' : ''}`} href={withBase(item.href)}>
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector('[data-nav-toggle]');
+  const menu = document.querySelector('[data-nav-menu]');
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      menu.classList.toggle('is-open', !expanded);
+    });
+
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('is-open');
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 800) {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('is-open');
+      }
+    });
+  }
+</script>

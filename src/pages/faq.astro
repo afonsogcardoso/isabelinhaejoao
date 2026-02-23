@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import siteContent from '../content/site.json';
+
+const { faq } = siteContent;
+---
+
+<BaseLayout title="FAQ · Isabelinha e João" description="Perguntas frequentes sobre o casamento.">
+  <section class="section">
+    <div class="container">
+      <header class="page-head">
+        <h1>FAQ</h1>
+        <p>Informação útil para facilitar a vossa presença no dia do casamento.</p>
+      </header>
+
+      <FAQAccordion items={faq} />
+    </div>
+  </section>
+</BaseLayout>
