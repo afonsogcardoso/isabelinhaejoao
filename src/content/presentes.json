@@ -2,10 +2,16 @@
   "introducao": "A vossa presença é, sem dúvida, o maior presente que podemos receber.",
   "introducao2": "Ainda assim, caso queiram contribuir para a nossa lua de mel ou para a nossa casa, ficamos muito agradecidos e deixamos abaixo os detalhes.",
   "detalhesPagamento": [
-    "IBAN: PT50 Nome do titular: João",
-    "IBAN: PT50 Nome do titular: Isabel",
-    "Isabel: MBWAY/ Revolut: +351 929 118 713",
-    "João: MBWAY/ Revolut: +351 917 037 801"
+    {
+      "nome": "João",
+      "iban": "PT50 0000 0000 0000 0000 0000 0",
+      "mbway": "+351 917 037 801"
+    },
+    {
+      "nome": "Isabel",
+      "iban": "PT50 0000 0000 0000 0000 0000 0",
+      "mbway": "+351 929 118 713"
+    }
   ],
   "itens": [
     {
@@ -16,17 +22,17 @@
     {
       "nome": "Sofa sala",
       "valor": "1000€",
-      "imagem": "https://picsum.photos/seed/sofa-sala-2026/900/600.webp"
+      "imagem": "/images/presentes/sofa.png"
     },
     {
       "nome": "Cadeira",
       "valor": "90€",
-      "imagem": "https://picsum.photos/seed/cadeira-2026/900/600.webp"
+      "imagem": "/images/presentes/cadeira.jpeg"
     },
     {
       "nome": "Carrinho de chá",
       "valor": "120€",
-      "imagem": "https://picsum.photos/seed/carrinho-cha-2026/900/600.webp"
+      "imagem": "/images/presentes/carrinho.jpeg"
     }
   ]
 }

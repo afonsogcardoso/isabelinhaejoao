@@ -18,9 +18,93 @@ const { introducao, introducao2, detalhesPagamento, itens } = giftsContent;
         <p class="section-intro" style="margin-top: 0.8rem;">{introducao}</p>
         <p class="section-intro" style="margin-top: 0.8rem;">{introducao2}</p>
 
-        <ul class="payment-list" aria-label="Detalhes de pagamento">
-          {detalhesPagamento.map((line) => <li>{line}</li>)}
-        </ul>
+         <section class="payment" aria-label="Detalhes de pagamento">
+          <div class="payment-grid">
+            {detalhesPagamento.map((pessoa) => (
+              <article class="payment-card">
+                <h3 class="payment-name">{pessoa.nome}</h3>
+
+                <dl class="payment-dl">
+                  <div class="payment-row">
+                    <dt class="payment-label">
+                      <span>IBAN</span>
+                      <button
+                        type="button"
+                        class="payment-copy"
+                        data-copy={pessoa.iban}
+                        aria-label={`Copiar IBAN de ${pessoa.nome}`}
+                      >
+                        Copiar
+                      </button>
+                    </dt>
+                    <dd class="payment-mono payment-wrap">{pessoa.iban}</dd>
+                  </div>
+
+                  <div class="payment-row">
+                    <dt class="payment-label">
+                      <span>MBWay / Revolut</span>
+                      <button
+                        type="button"
+                        class="payment-copy"
+                        data-copy={pessoa.mbway}
+                        aria-label={`Copiar MBWay/Revolut de ${pessoa.nome}`}
+                      >
+                        Copiar
+                      </button>
+                    </dt>
+                    <dd class="payment-mono">{pessoa.mbway}</dd>
+                  </div>
+                </dl>
+              </article>
+            ))}
+          </div>
+        </section>
+        <script is:inline>
+          (function () {
+            function fallbackCopy(text) {
+              const ta = document.createElement('textarea');
+              ta.value = text;
+              ta.setAttribute('readonly', '');
+              ta.style.position = 'fixed';
+              ta.style.top = '-9999px';
+              document.body.appendChild(ta);
+              ta.select();
+              try { document.execCommand('copy'); } catch (e) {}
+              document.body.removeChild(ta);
+            }
+
+            async function copyText(text) {
+              try {
+                if (navigator.clipboard && window.isSecureContext) {
+                  await navigator.clipboard.writeText(text);
+                } else {
+                  fallbackCopy(text);
+                }
+              } catch (e) {
+                fallbackCopy(text);
+              }
+            }
+
+            function flash(btn) {
+              const prev = btn.textContent;
+              btn.textContent = 'Copiado';
+              btn.disabled = true;
+              window.setTimeout(() => {
+                btn.textContent = prev;
+                btn.disabled = false;
+              }, 900);
+            }
+
+            document.addEventListener('click', async (e) => {
+              const btn = e.target && e.target.closest && e.target.closest('button[data-copy]');
+              if (!btn) return;
+              const text = btn.getAttribute('data-copy') || '';
+              if (!text) return;
+              await copyText(text);
+              flash(btn);
+            });
+          })();
+        </script>
 
         <div class="gift-grid" aria-live="polite">
           {
@@ -37,4 +121,53 @@ const { introducao, introducao2, detalhesPagamento, itens } = giftsContent;
       </div>
     </div>
   </section>
+  <style>
+    .payment-grid { max-width: 720px; }
+
+    .payment-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .payment-row dt {
+      font-size: 0.85rem;
+      opacity: 0.65;
+      font-weight: 500;
+    }
+
+    .payment-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .payment-wrap {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      min-width: 0;
+    }
+
+    .payment-copy {
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 10px;
+      padding: 0.35rem 0.6rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .payment-copy:disabled {
+      cursor: default;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 520px) {
+      .payment-label {
+        flex-direction: row;
+      }
+    }
+  </style>
 </BaseLayout>
