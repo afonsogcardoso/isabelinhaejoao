@@ -20,12 +20,29 @@ const navItems: NavItem[] = [
 
 const withBase = (path: string) => `${basePath}${path.replace(/^\//, '')}`;
 
+const normalizePath = (value: string) => {
+  let normalized = value.split('?')[0].split('#')[0];
+  normalized = normalized.replace(/\/index\.html?$/i, '/');
+  normalized = normalized.replace(/\/{2,}/g, '/');
+  if (!normalized.startsWith('/')) normalized = `/${normalized}`;
+  if (!normalized.endsWith('/')) normalized = `${normalized}/`;
+  return normalized || '/';
+};
+
+const normalizedBasePath = normalizePath(basePath);
+
 const normalizedCurrentPath = (() => {
-  if (basePath !== '/' && currentPath.startsWith(basePath)) {
-    const withoutBase = currentPath.slice(basePath.length);
-    return `/${withoutBase}`.replace(/\/+$/, '/') || '/';
+  const normalizedCurrent = normalizePath(currentPath);
+
+  if (
+    normalizedBasePath !== '/' &&
+    (normalizedCurrent === normalizedBasePath || normalizedCurrent.startsWith(normalizedBasePath))
+  ) {
+    const withoutBase = normalizedCurrent.slice(normalizedBasePath.length);
+    return normalizePath(withoutBase || '/');
   }
-  return currentPath.replace(/\/+$/, '/') || '/';
+
+  return normalizedCurrent;
 })();
 ---
 

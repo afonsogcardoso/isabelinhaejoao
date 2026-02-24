@@ -16,8 +16,11 @@ interface EventData {
   time: string;
   location: string;
   address: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
   googleMapsUrl: string;
-  appleMapsUrl: string;
   calendar: CalendarEvent;
 }
 
@@ -28,7 +31,20 @@ interface Props {
 const { event } = Astro.props;
 ---
 
-<article class="event-card">
+<article class={`event-card ${event.image?.src ? 'event-card-with-image' : ''}`}>
+  {
+    event.image?.src ? (
+      <figure class="event-image-wrap">
+        <img
+          class="event-image"
+          src={event.image.src}
+          alt={event.image.alt}
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+    ) : null
+  }
   <h3>{event.title}</h3>
   <div class="event-meta">
     <p><strong>Data:</strong> {event.date}</p>
@@ -36,5 +52,5 @@ const { event } = Astro.props;
     <p><strong>Local:</strong> {event.location}</p>
     <p><strong>Morada:</strong> {event.address}</p>
   </div>
-  <MapButtons googleMapsUrl={event.googleMapsUrl} appleMapsUrl={event.appleMapsUrl} calendarEvent={event.calendar} />
+  <MapButtons googleMapsUrl={event.googleMapsUrl} calendarEvent={event.calendar} />
 </article>

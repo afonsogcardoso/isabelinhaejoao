@@ -42,8 +42,11 @@
       "time": "16:00",
       "location": "Igreja Matriz de São Paulo, em Salvaterra de Magos",
       "address": "Salvaterra de Magos, Santarém, Portugal",
+      "image": {
+        "src": "/images/odia18/igreja.png",
+        "alt": "Igreja Matriz de São Paulo em Salvaterra de Magos"
+      },
       "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Igreja+Matriz+de+S%C3%A3o+Paulo+Salvaterra+de+Magos",
-      "appleMapsUrl": "https://maps.apple.com/?q=Igreja+Matriz+de+S%C3%A3o+Paulo+Salvaterra+de+Magos",
       "calendar": {
         "title": "Casamento Isabelinha e João - Cerimónia",
         "description": "Cerimónia do casamento de Isabelinha e João.",
@@ -60,8 +63,11 @@
       "time": "após a cerimónia",
       "location": "Mouchão da Saudade",
       "address": "2120-013 Salvaterra de Magos, Portugal",
+      "image": {
+        "src": "/images/odia18/festa.jpeg",
+        "alt": "Imagem do local do casamento"
+      },
       "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Mouch%C3%A3o+da+Saudade+2120-013+Salvaterra+de+Magos",
-      "appleMapsUrl": "https://maps.apple.com/?q=Mouch%C3%A3o+da+Saudade+2120-013+Salvaterra+de+Magos",
       "calendar": {
         "title": "Casamento Isabelinha e João - Festa",
         "description": "Festa do casamento de Isabelinha e João.",

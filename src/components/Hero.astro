@@ -3,12 +3,9 @@ interface Props {
   names: string;
   date: string;
   location: string;
-  eventHref: string;
-  giftsHref: string;
-  countdownTarget?: string;
 }
 
-const { names, date, location, eventHref, giftsHref, countdownTarget } = Astro.props;
+const { names, date, location } = Astro.props;
 ---
 
 <section class="hero section" aria-labelledby="titulo-principal">
@@ -20,48 +17,6 @@ const { names, date, location, eventHref, giftsHref, countdownTarget } = Astro.p
         <span>{date}</span>
         <span>{location}</span>
       </div>
-      <div class="hero-cta">
-        <a class="btn btn-primary" href={eventHref}>O dia 18</a>
-        <a class="btn btn-secondary" href={giftsHref}>Presentes</a>
-      </div>
-      {
-        countdownTarget ? (
-          <p class="countdown-box" data-countdown-target={countdownTarget} aria-live="polite">
-            A carregar contagem decrescente...
-          </p>
-        ) : null
-      }
     </div>
   </div>
 </section>
-
-<script>
-  const countdown = document.querySelector('[data-countdown-target]');
-
-  if (countdown) {
-    const target = countdown.getAttribute('data-countdown-target');
-
-    if (target) {
-      const targetDate = new Date(target);
-
-      const updateCountdown = () => {
-        const now = new Date();
-        const diff = targetDate.getTime() - now.getTime();
-
-        if (diff <= 0) {
-          countdown.textContent = 'Hoje é o grande dia.';
-          return;
-        }
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-
-        countdown.textContent = `Faltam ${days} dias, ${hours} horas e ${minutes} minutos.`;
-      };
-
-      updateCountdown();
-      setInterval(updateCountdown, 60000);
-    }
-  }
-</script>

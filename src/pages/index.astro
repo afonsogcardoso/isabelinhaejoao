@@ -36,14 +36,7 @@ const carouselImages = localCarouselImages.length > 0 ? localCarouselImages : fa
 ---
 
 <BaseLayout title="Início · Isabelinha e João" description={site.description}>
-  <Hero
-    names={site.names}
-    date={site.date}
-    location={site.location}
-    eventHref={withBase('/evento/')}
-    giftsHref={withBase('/presentes/')}
-    countdownTarget={site.dateIso}
-  />
+  <Hero names={site.names} date={site.date} location={site.location} />
 
   <section class="section section-home-carousel" aria-label="Galeria de imagens">
     <div class="container">
@@ -59,4 +52,60 @@ const carouselImages = localCarouselImages.length > 0 ? localCarouselImages : fa
       </div>
     </div>
   </section>
+
+  <section class="section section-home-nav" aria-label="Explorar páginas">
+    <div class="container">
+      <nav class="home-nav-grid" aria-label="Navegação rápida">
+        <a class="home-nav-card" href={withBase('/evento/')}>
+          <strong>O dia 18</strong>
+          <span>Agenda completa, locais e mapas</span>
+          <span class="home-nav-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="home-nav-card" href={withBase('/presentes/')}>
+          <strong>Presentes</strong>
+          <span>Contribuições e detalhes de pagamento</span>
+          <span class="home-nav-arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="section section-home-countdown" aria-label="Contagem decrescente">
+    <div class="container">
+      <p class="home-countdown" data-home-countdown-target={site.dateIso} aria-live="polite">
+        A carregar contagem decrescente...
+      </p>
+    </div>
+  </section>
 </BaseLayout>
+
+<script define:vars={{ countdownTarget: site.dateIso }}>
+  const countdown = document.querySelector('[data-home-countdown-target]');
+
+  if (countdown) {
+    const target = countdown.getAttribute('data-home-countdown-target') || countdownTarget;
+
+    if (target) {
+      const targetDate = new Date(target);
+
+      const updateCountdown = () => {
+        const now = new Date();
+        const diff = targetDate.getTime() - now.getTime();
+
+        if (diff <= 0) {
+          countdown.textContent = 'Hoje é o grande dia.';
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+        countdown.textContent = `Faltam ${days} dias, ${hours} horas e ${minutes}.`;
+      };
+
+      updateCountdown();
+      setInterval(updateCountdown, 60000);
+    }
+  }
+</script>

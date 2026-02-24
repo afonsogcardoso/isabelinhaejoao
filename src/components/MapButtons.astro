@@ -12,19 +12,15 @@ interface CalendarEvent {
 
 interface Props {
   googleMapsUrl: string;
-  appleMapsUrl: string;
   calendarEvent: CalendarEvent;
 }
 
-const { googleMapsUrl, appleMapsUrl, calendarEvent } = Astro.props;
+const { googleMapsUrl, calendarEvent } = Astro.props;
 ---
 
 <div class="map-buttons">
   <a class="btn btn-secondary" href={googleMapsUrl} target="_blank" rel="noreferrer noopener" aria-label="Abrir no Google Maps">
     Abrir no Google Maps
-  </a>
-  <a class="btn btn-secondary" href={appleMapsUrl} target="_blank" rel="noreferrer noopener" aria-label="Abrir no Apple Maps">
-    Abrir no Apple Maps
   </a>
   <CalendarIcsLink event={calendarEvent} />
 </div>
