@@ -99,7 +99,7 @@ const carouselImages = localCarouselImages.length > 0 ? localCarouselImages : fa
         const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const minutes = Math.floor((diff / (1000 * 60)) % 60);
 
-        countdown.textContent = `Faltam ${days} dias, ${hours} horas e ${minutes}.`;
+        countdown.textContent = `Faltam ${days} dias, ${hours} horas e ${minutes} minutos.`;
       };
 
       updateCountdown();
