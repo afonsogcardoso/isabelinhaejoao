@@ -29,6 +29,12 @@ interface Props {
 }
 
 const { event } = Astro.props;
+const basePath = import.meta.env.BASE_URL;
+const resolveAssetUrl = (source: string) => {
+  if (!source) return source;
+  if (/^(https?:)?\/\//i.test(source) || source.startsWith('data:')) return source;
+  return `${basePath}${source.replace(/^\//, '')}`;
+};
 ---
 
 <article class={`event-card ${event.image?.src ? 'event-card-with-image' : ''}`}>
@@ -37,7 +43,7 @@ const { event } = Astro.props;
       <figure class="event-image-wrap">
         <img
           class="event-image"
-          src={event.image.src}
+          src={resolveAssetUrl(event.image.src)}
           alt={event.image.alt}
           loading="lazy"
           decoding="async"
