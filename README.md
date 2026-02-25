@@ -73,7 +73,6 @@ src/
     MapButtons.astro
     CalendarIcsLink.astro
     GiftCard.astro
-    FAQAccordion.astro
   content/
     presente.json
     site.json
@@ -83,7 +82,6 @@ src/
     index.astro
     evento.astro
     presente.astro
-    faq.astro
 public/
   images/carrossel/
   images/gift-placeholder.svg
