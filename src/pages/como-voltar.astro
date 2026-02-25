@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Como voltar · Isabelinha e João" description="Informações para voltar a casa depois do casamento.">
+  <section class="section section-page-head">
+    <div class="container">
+      <header class="page-head">
+        <h1>Como voltar</h1>
+        <p>Para terminar o dia sem preocupações.</p>
+      </header>
+
+      <div class="return-shell">
+        <p class="section-intro">
+          Para quem quiser ir para casa descansado depois do casamento, sugerimos marcar um driver com antecedência.
+          Assim não têm de se preocupar com nada no próprio dia.
+        </p>
+
+        <article class="payment-card return-card">
+          <h2 class="payment-name">Contacto</h2>
+          <p class="return-name">Manuel Maio</p>
+          <a class="btn btn-secondary return-phone" href="tel:+351911110911">+351 911 110 911</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .return-shell {
+      margin-top: 0.95rem;
+      display: grid;
+      gap: 1rem;
+      max-width: 44rem;
+    }
+
+    .return-card {
+      width: min(100%, 26rem);
+    }
+
+    .return-name {
+      margin-top: 0.35rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .return-phone {
+      margin-top: 0.95rem;
+      width: fit-content;
+      text-decoration: none;
+    }
+
+    @media (max-width: 520px) {
+      .return-card {
+        width: 100%;
+      }
+
+      .return-phone {
+        width: 100%;
+      }
+    }
+  </style>
+</BaseLayout>

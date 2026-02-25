@@ -4,21 +4,19 @@
   "detalhesPagamento": [
     {
       "nome": "Isabelinha e João",
-      "iban": "PT50 0023 0000 4576 7687 8029 4",
-      "telefone1": "+351 929 118 713",
-      "telefone2": "+351 917 037 801"
+      "iban": "PT50 0023 0000 4576 7687 8029 4"
     }
   ],
   "itens": [
     {
-      "nome": "Lua de Mel",
+      "nome": "Lua de Mel - Indonésia",
       "valor": "Jantes, atividades e experiências durante a nossa lua de mel na Indonésia!",
-      "imagem": "/images/presente/indonesia.jpeg"
+      "imagem": "/images/presente/indonesia.png"
     },
     {
       "nome": "Casa",
       "valor": "A nossa casa, para que possamos criar um lar cheio de amor e memórias felizes.",
-      "imagem": "/images/presente/casa.png"
+      "imagem": "/images/presente/home.png"
     }
   ]
 }

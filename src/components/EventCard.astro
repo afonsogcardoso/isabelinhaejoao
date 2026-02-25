@@ -11,6 +11,7 @@ interface CalendarEvent {
 }
 
 interface EventData {
+  id?: string;
   title: string;
   date: string;
   time: string;
@@ -37,7 +38,7 @@ const resolveAssetUrl = (source: string) => {
 };
 ---
 
-<article class={`event-card ${event.image?.src ? 'event-card-with-image' : ''}`}>
+<article class={`event-card ${event.image?.src ? 'event-card-with-image' : ''}`} data-event-id={event.id}>
   {
     event.image?.src ? (
       <figure class="event-image-wrap">

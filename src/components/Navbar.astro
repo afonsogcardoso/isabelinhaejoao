@@ -15,7 +15,7 @@ const navItems: NavItem[] = [
   { label: 'Início', href: '/' },
   { label: 'O dia 18', href: '/evento/' },
   { label: 'Presente', href: '/presente/' },
-  { label: 'FAQ', href: '/faq/' }
+  { label: 'Como voltar', href: '/como-voltar/' }
 ];
 
 const withBase = (path: string) => `${basePath}${path.replace(/^\//, '')}`;
@@ -56,7 +56,8 @@ const normalizedCurrentPath = (() => {
     <nav id="menu-principal" class="nav-menu" data-nav-menu aria-label="Navegação principal">
       {
         navItems.map((item) => {
-          const active = normalizedCurrentPath === item.href;
+          const itemPath = normalizePath(item.href);
+          const active = normalizedCurrentPath === itemPath;
           return (
             <a class={`nav-link ${active ? 'is-active' : ''}`} href={withBase(item.href)}>
               {item.label}

@@ -39,36 +39,6 @@ const { introducao, introducao2, detalhesPagamento, itens } = giftsContent;
                     </dt>
                     <dd class="payment-mono payment-wrap">{pessoa.iban}</dd>
                   </div>
-
-                  <div class="payment-row">
-                    <dt class="payment-label">
-                      <span>MBWay / Revolut</span>
-                    </dt>
-                    <dd class="payment-list">
-                      <div class="payment-inline">
-                        <span class="payment-mono">{pessoa.telefone1}</span>
-                        <button
-                          type="button"
-                          class="payment-copy"
-                          data-copy={pessoa.telefone1}
-                          aria-label={`Copiar MBWay/Revolut 1 de ${pessoa.nome}`}
-                        >
-                          Copiar
-                        </button>
-                      </div>
-                      <div class="payment-inline">
-                        <span class="payment-mono">{pessoa.telefone2}</span>
-                        <button
-                          type="button"
-                          class="payment-copy"
-                          data-copy={pessoa.telefone2}
-                          aria-label={`Copiar MBWay/Revolut 2 de ${pessoa.nome}`}
-                        >
-                          Copiar
-                        </button>
-                      </div>
-                    </dd>
-                  </div>
                 </dl>
               </article>
             ))}
@@ -126,7 +96,6 @@ const { introducao, introducao2, detalhesPagamento, itens } = giftsContent;
             itens.map((item) => (
               <GiftCard
                 title={item.nome}
-                price={item.valor}
                 imageSrc={item.imagem}
                 imageAlt={`Imagem ilustrativa: ${item.nome}`}
               />
@@ -158,20 +127,6 @@ const { introducao, introducao2, detalhesPagamento, itens } = giftsContent;
       gap: 0.75rem;
     }
 
-    .payment-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-      margin: 0;
-    }
-
-    .payment-inline {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-    }
-
     .payment-wrap {
       overflow-wrap: anywhere;
       word-break: break-word;
@@ -193,10 +148,5 @@ const { introducao, introducao2, detalhesPagamento, itens } = giftsContent;
       opacity: 0.7;
     }
 
-    @media (max-width: 520px) {
-      .payment-inline {
-        align-items: flex-start;
-      }
-    }
   </style>
 </BaseLayout>
