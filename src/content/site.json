@@ -47,9 +47,10 @@
       },
       "googleMapsUrl": "https://maps.app.goo.gl/LjzktBedqdpVDDEp9",
       "calendar": {
-        "title": "Casamento Isabelinha e João - Cerimónia",
-        "description": "Cerimónia do casamento de Isabelinha e João.",
-        "location": "Igreja Matriz de São Paulo, Salvaterra de Magos, Santarém, Portugal",
+        "title": "Casamento Isabelinha e João - Missa",
+        "description": "Missa - Isabelinha e João.",
+        "location": "Igreja Matriz de São Paulo, R. Nova de São Paulo, 2120-097 Salvaterra de Magos, Portugal",
+        "mapsUrl": "https://maps.app.goo.gl/LjzktBedqdpVDDEp9",
         "start": "2026-07-18T16:00:00+01:00",
         "end": "2026-07-18T17:00:00+01:00",
         "fileName": "missa-casamento.ics"
@@ -70,6 +71,7 @@
         "title": "Casamento Isabelinha e João - Festa",
         "description": "Festa do casamento de Isabelinha e João.",
         "location": "Mouchão da Saudade, 2120-013 Salvaterra de Magos, Portugal",
+        "mapsUrl": "https://maps.app.goo.gl/SXvdAgJGwePSMR3N6",
         "start": "2026-07-18T17:00:00+01:00",
         "end": "2026-07-19T06:00:00+01:00",
         "fileName": "festa-casamento.ics"

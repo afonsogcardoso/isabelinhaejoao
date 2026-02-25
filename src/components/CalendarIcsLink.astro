@@ -3,6 +3,7 @@ interface CalendarEvent {
   title: string;
   description: string;
   location: string;
+  mapsUrl?: string;
   start: string;
   end: string;
   fileName: string;
@@ -28,6 +29,7 @@ const sanitize = (value: string) =>
     .replace(/\n/g, '\\n');
 
 const uid = `${event.fileName}-${formatUtc(event.start)}@isabelinhaejoao`;
+const reminderText = sanitize(`Lembrete: ${event.title}`);
 const ics = [
   'BEGIN:VCALENDAR',
   'VERSION:2.0',
@@ -41,6 +43,17 @@ const ics = [
   `SUMMARY:${sanitize(event.title)}`,
   `DESCRIPTION:${sanitize(event.description)}`,
   `LOCATION:${sanitize(event.location)}`,
+  ...(event.mapsUrl ? [`URL:${event.mapsUrl}`] : []),
+  'BEGIN:VALARM',
+  'TRIGGER:-P1D',
+  'ACTION:DISPLAY',
+  `DESCRIPTION:${reminderText}`,
+  'END:VALARM',
+  'BEGIN:VALARM',
+  'TRIGGER:-PT2H',
+  'ACTION:DISPLAY',
+  `DESCRIPTION:${reminderText}`,
+  'END:VALARM',
   'END:VEVENT',
   'END:VCALENDAR'
 ].join('\r\n');
