@@ -541,6 +541,9 @@ img {
 .home-nav-card:nth-child(2)::before {
   content: '02';
 }
+.home-nav-card:nth-child(3)::before {
+  content: '03';
+}
 
 .home-nav-card:hover {
   border-color: color-mix(in srgb, var(--primary) 45%, white);
