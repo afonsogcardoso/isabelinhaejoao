@@ -11,13 +11,6 @@ interface Props {
 
 const { currentPath, basePath } = Astro.props;
 
-const navItems: NavItem[] = [
-  { label: 'Início', href: '/' },
-  { label: 'O dia 18', href: '/evento/' },
-  { label: 'Presente', href: '/presente/' },
-  { label: 'Como voltar', href: '/como-voltar/' }
-];
-
 const withBase = (path: string) => `${basePath}${path.replace(/^\//, '')}`;
 
 const normalizePath = (value: string) => {
@@ -44,6 +37,24 @@ const normalizedCurrentPath = (() => {
 
   return normalizedCurrent;
 })();
+
+const isOnePage = normalizedCurrentPath === '/tudo/';
+
+const navItems: NavItem[] = isOnePage
+  ? [
+      { label: 'Início', href: '/tudo/#topo' },
+      { label: 'Sobre nós', href: '/tudo/#sobre-nos' },
+      { label: 'O dia 18', href: '/tudo/#dia-18' },
+      { label: 'Presente', href: '/tudo/#presente' },
+      { label: 'Como voltar', href: '/tudo/#como-voltar' }
+    ]
+  : [
+      { label: 'Início', href: '/' },
+      { label: 'O dia 18', href: '/evento/' },
+      { label: 'Presente', href: '/presente/' },
+      { label: 'Como voltar', href: '/como-voltar/' },
+      { label: 'Página única', href: '/tudo/' }
+    ];
 ---
 
 <header class="topbar">
@@ -57,7 +68,7 @@ const normalizedCurrentPath = (() => {
       {
         navItems.map((item) => {
           const itemPath = normalizePath(item.href);
-          const active = normalizedCurrentPath === itemPath;
+          const active = !isOnePage && normalizedCurrentPath === itemPath;
           return (
             <a class={`nav-link ${active ? 'is-active' : ''}`} href={withBase(item.href)}>
               {item.label}
