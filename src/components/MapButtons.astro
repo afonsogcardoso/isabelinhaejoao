@@ -13,14 +13,15 @@ interface CalendarEvent {
 interface Props {
   googleMapsUrl: string;
   calendarEvent: CalendarEvent;
+  showCalendar?: boolean;
 }
 
-const { googleMapsUrl, calendarEvent } = Astro.props;
+const { googleMapsUrl, calendarEvent, showCalendar = true } = Astro.props;
 ---
 
 <div class="map-buttons">
   <a class="btn btn-secondary" href={googleMapsUrl} target="_blank" rel="noreferrer noopener" aria-label="Abrir no Google Maps">
     Abrir no Google Maps
   </a>
-  <CalendarIcsLink event={calendarEvent} />
+  {showCalendar ? <CalendarIcsLink event={calendarEvent} /> : null}
 </div>

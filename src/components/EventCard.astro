@@ -59,5 +59,9 @@ const resolveAssetUrl = (source: string) => {
     <p><strong>Local:</strong> {event.location}</p>
     <p><strong>Morada:</strong> {event.address}</p>
   </div>
-  <MapButtons googleMapsUrl={event.googleMapsUrl} calendarEvent={event.calendar} />
+  <MapButtons
+    googleMapsUrl={event.googleMapsUrl}
+    calendarEvent={event.calendar}
+    showCalendar={event.id !== 'festa'}
+  />
 </article>
