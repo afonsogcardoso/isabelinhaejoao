@@ -634,6 +634,7 @@ img {
 .event-image {
   max-width: 200px;
   width: 100%;
+  margin-inline: auto;
   object-fit: cover;
   object-position: center;
   border-radius: 0.35rem;
@@ -648,6 +649,30 @@ img {
 .event-card[data-event-id='missa'] .event-image {
   object-fit: contain;
   max-height: 200px;
+}
+
+.event-card.event-card-onepage {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.event-card.event-card-onepage .map-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.event-card.event-card-onepage .map-buttons .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  min-height: 2.85rem;
+  padding-inline: 0.75rem;
+  line-height: 1.2;
+  text-align: center;
+  text-wrap: balance;
 }
 
 .event-card h3 {
@@ -670,7 +695,11 @@ img {
 }
 
 .map-buttons .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 2.85rem;
+  text-align: center;
 }
 
 .page-head {

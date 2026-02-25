@@ -39,39 +39,39 @@
       "id": "missa",
       "title": "Missa",
       "time": "16:00",
-      "location": "Igreja Matriz de São Paulo, em Salvaterra de Magos",
-      "address": "Salvaterra de Magos, Santarém, Portugal",
+      "location": "Igreja Matriz de São Paulo, Salvaterra de Magos",
+      "address": "R. Nova de São Paulo, 2120-097 Salvaterra de Magos, Portugal",
       "image": {
         "src": "/images/odia18/igreja.png",
         "alt": "Igreja Matriz de São Paulo em Salvaterra de Magos"
       },
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Igreja+Matriz+de+S%C3%A3o+Paulo+Salvaterra+de+Magos",
+      "googleMapsUrl": "https://maps.app.goo.gl/LjzktBedqdpVDDEp9",
       "calendar": {
         "title": "Casamento Isabelinha e João - Cerimónia",
         "description": "Cerimónia do casamento de Isabelinha e João.",
         "location": "Igreja Matriz de São Paulo, Salvaterra de Magos, Santarém, Portugal",
         "start": "2026-07-18T16:00:00+01:00",
-        "end": "2026-07-18T17:15:00+01:00",
+        "end": "2026-07-18T17:00:00+01:00",
         "fileName": "missa-casamento.ics"
       }
     },
     {
       "id": "festa",
       "title": "Festa",
-      "time": "após a missa",
+      "time": "17:00",
       "location": "Mouchão da Saudade",
-      "address": "2120-013 Salvaterra de Magos, Portugal",
+      "address": "4 minutos da Igreja",
       "image": {
         "src": "/images/odia18/festa.png",
         "alt": "Imagem do local do casamento"
       },
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Mouch%C3%A3o+da+Saudade+2120-013+Salvaterra+de+Magos",
+      "googleMapsUrl": "https://maps.app.goo.gl/SXvdAgJGwePSMR3N6",
       "calendar": {
         "title": "Casamento Isabelinha e João - Festa",
         "description": "Festa do casamento de Isabelinha e João.",
         "location": "Mouchão da Saudade, 2120-013 Salvaterra de Magos, Portugal",
-        "start": "2026-07-18T18:30:00+01:00",
-        "end": "2026-07-19T01:30:00+01:00",
+        "start": "2026-07-18T17:00:00+01:00",
+        "end": "2026-07-19T06:00:00+01:00",
         "fileName": "festa-casamento.ics"
       }
     }

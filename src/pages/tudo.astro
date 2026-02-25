@@ -47,9 +47,7 @@ const carouselImages = localCarouselImages.length > 0 ? localCarouselImages : fa
     <div class="container">
       <ImageCarousel images={carouselImages} />
     </div>
-  </section>
 
-  <section class="section section-home-about onepage-section" id="sobre-nos" aria-labelledby="sobre-nos-title">
     <div class="container">
       <div class="home-about">
         <h2 class="section-title" id="sobre-nos-title">Sobre nós</h2>
@@ -64,12 +62,11 @@ const carouselImages = localCarouselImages.length > 0 ? localCarouselImages : fa
         <h2 class="section-title" id="dia-18-title">O dia 18</h2>
       </header>
 
-      <div class="timeline" aria-label="Timeline do dia 18">
+      <div class="timeline onepage-timeline" aria-label="Timeline do dia 18">
         {
           events.map((event, index) => (
             <div class="timeline-item">
-              <span class="timeline-point" aria-hidden="true">{index + 1}</span>
-              <EventCard event={event} />
+              <EventCard event={event} onePage={true} />
             </div>
           ))
         }
@@ -83,7 +80,7 @@ const carouselImages = localCarouselImages.length > 0 ? localCarouselImages : fa
         <h2 class="section-title" id="presente-title">Presente</h2>
       </header>
 
-      <div class="gifts-shell">
+      <div class="gifts-shell onepage-gifts-shell">
         <p class="section-intro" style="margin-top: 0.8rem;">{introducao}</p>
         <p class="section-intro" style="margin-top: 0.8rem;">{introducao2}</p>
 
@@ -203,7 +200,31 @@ const carouselImages = localCarouselImages.length > 0 ? localCarouselImages : fa
       scroll-margin-top: 5.2rem;
     }
 
+    .onepage-section.section {
+      padding-block: 1.1rem;
+    }
+
+    .onepage-section + .onepage-section .container {
+      padding-top: 0;
+    }
+
+    .onepage-section + .onepage-section .container::before {
+      content: '';
+      display: block;
+      border-top: 1px solid color-mix(in srgb, var(--line) 82%, white);
+      margin-bottom: 1.1rem;
+    }
+
     .payment-grid { max-width: 720px; }
+
+    .onepage-timeline .timeline-item {
+      grid-template-columns: 1fr;
+    }
+
+    .onepage-gifts-shell .gift-card-body {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
 
     .payment-row {
       display: flex;
@@ -269,7 +290,25 @@ const carouselImages = localCarouselImages.length > 0 ? localCarouselImages : fa
       text-decoration: none;
     }
 
+    @media (min-width: 50rem) {
+      .onepage-section.section {
+        padding-block: 1.35rem;
+      }
+
+      .onepage-section + .onepage-section .container::before {
+        margin-bottom: 1.35rem;
+      }
+    }
+
     @media (max-width: 520px) {
+      .onepage-section.section {
+        padding-block: 0.95rem;
+      }
+
+      .onepage-section + .onepage-section .container::before {
+        margin-bottom: 0.95rem;
+      }
+
       .return-card {
         width: 100%;
       }
