@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import QuickNav from '../components/QuickNav.astro';
 ---
 
 <BaseLayout title="Como voltar · Isabelinha e João" description="Informações para voltar a casa depois do casamento.">
@@ -7,15 +8,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container">
       <header class="page-head">
         <h1>Como voltar</h1>
-        <p class="section-intro" style="margin-top: 0.8rem;">Para terminar o dia sem preocupações.</p>
       </header>
-
-      <div class="return-shell">
-        <p class="section-intro">
+        <p class="section-intro" style="margin-top: 0.8rem;">
           Para quem quiser ir para casa descansado depois do casamento, sugerimos marcar um driver com antecedência.
           Assim não têm de se preocupar com nada no próprio dia.
         </p>
 
+      <div class="return-shell">
         <article class="payment-card return-card">
           <h2 class="payment-name">Contacto</h2>
           <p class="return-name">Manuel Maio</p>
@@ -24,6 +23,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
   </section>
+
+  <QuickNav />
 
   <style>
     .return-shell {

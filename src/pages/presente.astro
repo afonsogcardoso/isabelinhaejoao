@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GiftCard from '../components/GiftCard.astro';
+import QuickNav from '../components/QuickNav.astro';
 import giftsContent from '../content/presente.json';
 
 const { introducao, introducao2, detalhesPagamento, itens } = giftsContent;
@@ -105,6 +106,9 @@ const { introducao, introducao2, detalhesPagamento, itens } = giftsContent;
       </div>
     </div>
   </section>
+
+  <QuickNav />
+
   <style>
     .payment-grid { max-width: 720px; }
 
@@ -128,8 +132,9 @@ const { introducao, introducao2, detalhesPagamento, itens } = giftsContent;
     }
 
     .payment-wrap {
-      overflow-wrap: anywhere;
-      word-break: break-word;
+      white-space: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       min-width: 0;
     }
 

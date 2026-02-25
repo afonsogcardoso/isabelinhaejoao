@@ -4,11 +4,11 @@ import { extname } from 'node:path';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import ImageCarousel from '../components/ImageCarousel.astro';
+import QuickNav from '../components/QuickNav.astro';
 import siteContent from '../content/site.json';
 
 const { site, about, carouselImages: fallbackCarouselImages } = siteContent;
 const basePath = import.meta.env.BASE_URL;
-const withBase = (path: string) => `${basePath}${path.replace(/^\//, '')}`;
 
 const carouselDirUrl = new URL('../../public/images/carrossel/', import.meta.url);
 const supportedExtensions = new Set(['.avif', '.webp', '.jpg', '.jpeg', '.png', '.gif']);
@@ -53,24 +53,7 @@ const carouselImages = localCarouselImages.length > 0 ? localCarouselImages : fa
     </div>
   </section>
 
-  <section class="section section-home-nav" aria-label="Explorar páginas">
-    <div class="container">
-      <nav class="home-nav-grid" aria-label="Navegação rápida">
-        <a class="home-nav-card" href={withBase('/evento/')}>
-          <strong>O dia 18</strong>
-          <span class="home-nav-arrow" aria-hidden="true">→</span>
-        </a>
-        <a class="home-nav-card" href={withBase('/presente/')}>
-          <strong>Presente</strong>
-          <span class="home-nav-arrow" aria-hidden="true">→</span>
-        </a>
-        <a class="home-nav-card" href={withBase('/como-voltar/')}>
-          <strong>Como voltar</strong>
-          <span class="home-nav-arrow" aria-hidden="true">→</span>
-        </a>
-      </nav>
-    </div>
-  </section>
+  <QuickNav />
 
   <section class="section section-home-countdown" aria-label="Contagem decrescente">
     <div class="container">

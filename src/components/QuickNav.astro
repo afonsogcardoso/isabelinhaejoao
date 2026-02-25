@@ -1,0 +1,46 @@
+---
+interface NavItem {
+  label: string;
+  href: string;
+  order: string;
+}
+
+const currentPath = Astro.url.pathname;
+const basePath = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${basePath}${path.replace(/^\//, '')}`;
+
+const normalizePath = (value: string) => {
+  let normalized = value.split('?')[0].split('#')[0];
+  normalized = normalized.replace(/\/index\.html?$/i, '/');
+  normalized = normalized.replace(/\/{2,}/g, '/');
+  if (!normalized.startsWith('/')) normalized = `/${normalized}`;
+  if (!normalized.endsWith('/')) normalized = `${normalized}/`;
+  return normalized || '/';
+};
+
+const navItems: NavItem[] = [
+  { label: 'Início', href: '/', order: '00' },
+  { label: 'O dia 18', href: '/evento/', order: '01' },
+  { label: 'Presente', href: '/presente/', order: '02' },
+  { label: 'Como voltar', href: '/como-voltar/', order: '03' }
+];
+
+const normalizedCurrentPath = normalizePath(currentPath);
+
+const visibleNavItems = navItems.filter((item) => normalizePath(withBase(item.href)) !== normalizedCurrentPath);
+---
+
+<section class="section section-home-nav" aria-label="Explorar páginas">
+  <div class="container">
+    <nav class="home-nav-grid" aria-label="Navegação rápida">
+      {
+        visibleNavItems.map((item) => (
+          <a class="home-nav-card" href={withBase(item.href)} data-order={item.order}>
+            <strong>{item.label}</strong>
+            <span class="home-nav-arrow" aria-hidden="true">→</span>
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</section>

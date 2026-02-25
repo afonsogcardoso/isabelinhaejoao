@@ -527,7 +527,7 @@ img {
 }
 
 .home-nav-card::before {
-  content: '01';
+  content: attr(data-order);
   grid-column: 1;
   grid-row: 1 / span 2;
   align-self: start;
@@ -536,13 +536,6 @@ img {
   letter-spacing: 0.13em;
   color: color-mix(in srgb, var(--muted) 88%, var(--text));
   margin-top: 0.16rem;
-}
-
-.home-nav-card:nth-child(2)::before {
-  content: '02';
-}
-.home-nav-card:nth-child(3)::before {
-  content: '03';
 }
 
 .home-nav-card:hover {

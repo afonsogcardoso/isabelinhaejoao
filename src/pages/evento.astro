@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EventCard from '../components/EventCard.astro';
+import QuickNav from '../components/QuickNav.astro';
 import siteContent from '../content/site.json';
 
 const { events } = siteContent;
@@ -11,8 +12,8 @@ const { events } = siteContent;
     <div class="container">
       <header class="page-head">
         <h1>O dia 18</h1>
-        <p class="section-intro" style="margin-top: 0.8rem;">O nosso dia, passo a passo, para estares connosco do início ao fim.</p>
       </header>
+        <p class="section-intro" style="margin-top: 0.8rem;">O nosso dia, passo a passo, para estares connosco do início ao fim.</p>
 
       <div class="timeline" aria-label="Timeline do dia 18">
         {
@@ -26,4 +27,6 @@ const { events } = siteContent;
       </div>
     </div>
   </section>
+
+  <QuickNav />
 </BaseLayout>
