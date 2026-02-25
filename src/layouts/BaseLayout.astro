@@ -5,17 +5,23 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
   noindex?: boolean;
 }
 
 const {
   title = 'Casamento Isabelinha e João',
   description = 'Site oficial do casamento de Isabelinha e João.',
+  ogImage = '/images/share-whatsapp.jpg',
   noindex = false
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
 const basePath = import.meta.env.BASE_URL;
+const siteUrl = Astro.site ?? Astro.url;
+const pageUrl = new URL(`${Astro.url.pathname}${Astro.url.search}`, siteUrl).toString();
+const ogImagePath = /^(https?:)?\/\//i.test(ogImage) ? ogImage : `${basePath}${ogImage.replace(/^\//, '')}`;
+const ogImageUrl = new URL(ogImagePath, siteUrl).toString();
 ---
 
 <!doctype html>
@@ -24,6 +30,17 @@ const basePath = import.meta.env.BASE_URL;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={pageUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_PT" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <meta name="theme-color" content="#7a7366" />
     {noindex ? <meta name="robots" content="noindex, nofollow" /> : null}
     <link rel="icon" type="image/svg+xml" href={`${basePath}favicon.svg`} />
