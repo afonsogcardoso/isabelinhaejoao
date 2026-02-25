@@ -1,16 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GiftCard from '../components/GiftCard.astro';
-import giftsContent from '../content/presentes.json';
+import giftsContent from '../content/presente.json';
 
 const { introducao, introducao2, detalhesPagamento, itens } = giftsContent;
 ---
 
-<BaseLayout title="Presentes · Isabelinha e João" description="Informações de presentes do casamento.">
+<BaseLayout title="Presente · Isabelinha e João" description="Informações de presente do casamento.">
   <section class="section section-page-head">
     <div class="container">
       <header class="page-head">
-        <h1>Presentes</h1>
+        <h1>Presente</h1>
       </header>
 
       <div class="gifts-shell">
@@ -43,16 +43,31 @@ const { introducao, introducao2, detalhesPagamento, itens } = giftsContent;
                   <div class="payment-row">
                     <dt class="payment-label">
                       <span>MBWay / Revolut</span>
-                      <button
-                        type="button"
-                        class="payment-copy"
-                        data-copy={pessoa.mbway}
-                        aria-label={`Copiar MBWay/Revolut de ${pessoa.nome}`}
-                      >
-                        Copiar
-                      </button>
                     </dt>
-                    <dd class="payment-mono">{pessoa.mbway}</dd>
+                    <dd class="payment-list">
+                      <div class="payment-inline">
+                        <span class="payment-mono">{pessoa.telefone1}</span>
+                        <button
+                          type="button"
+                          class="payment-copy"
+                          data-copy={pessoa.telefone1}
+                          aria-label={`Copiar MBWay/Revolut 1 de ${pessoa.nome}`}
+                        >
+                          Copiar
+                        </button>
+                      </div>
+                      <div class="payment-inline">
+                        <span class="payment-mono">{pessoa.telefone2}</span>
+                        <button
+                          type="button"
+                          class="payment-copy"
+                          data-copy={pessoa.telefone2}
+                          aria-label={`Copiar MBWay/Revolut 2 de ${pessoa.nome}`}
+                        >
+                          Copiar
+                        </button>
+                      </div>
+                    </dd>
                   </div>
                 </dl>
               </article>
@@ -143,6 +158,20 @@ const { introducao, introducao2, detalhesPagamento, itens } = giftsContent;
       gap: 0.75rem;
     }
 
+    .payment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin: 0;
+    }
+
+    .payment-inline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
     .payment-wrap {
       overflow-wrap: anywhere;
       word-break: break-word;
@@ -165,8 +194,8 @@ const { introducao, introducao2, detalhesPagamento, itens } = giftsContent;
     }
 
     @media (max-width: 520px) {
-      .payment-label {
-        flex-direction: row;
+      .payment-inline {
+        align-items: flex-start;
       }
     }
   </style>

@@ -1,8 +1,8 @@
 {
   "site": {
-    "title": "Casamento Isabelinha e João",
-    "description": "Site oficial do casamento de Isabelinha e João.",
-    "names": "Isabelinha e João",
+    "title": "Casamento isabelinha e joão",
+    "description": "Site oficial do casamento de isabelinha e joão.",
+    "names": "isabelinha e joão",
     "date": "18 de Julho de 2026",
     "dateIso": "2026-07-18T16:00:00+01:00",
     "location": "Salvaterra de Magos"
@@ -36,9 +36,8 @@
   ],
   "events": [
     {
-      "id": "cerimonia",
-      "title": "Cerimónia",
-      "date": "18 de Julho de 2026",
+      "id": "missa",
+      "title": "Missa",
       "time": "16:00",
       "location": "Igreja Matriz de São Paulo, em Salvaterra de Magos",
       "address": "Salvaterra de Magos, Santarém, Portugal",
@@ -53,18 +52,17 @@
         "location": "Igreja Matriz de São Paulo, Salvaterra de Magos, Santarém, Portugal",
         "start": "2026-07-18T16:00:00+01:00",
         "end": "2026-07-18T17:15:00+01:00",
-        "fileName": "cerimonia-casamento.ics"
+        "fileName": "missa-casamento.ics"
       }
     },
     {
       "id": "festa",
       "title": "Festa",
-      "date": "18 de Julho de 2026",
-      "time": "após a cerimónia",
+      "time": "após a missa",
       "location": "Mouchão da Saudade",
       "address": "2120-013 Salvaterra de Magos, Portugal",
       "image": {
-        "src": "/images/odia18/festa.jpeg",
+        "src": "/images/odia18/festa.png",
         "alt": "Imagem do local do casamento"
       },
       "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Mouch%C3%A3o+da+Saudade+2120-013+Salvaterra+de+Magos",
@@ -85,7 +83,7 @@
     },
     {
       "question": "Podemos levar crianças?",
-      "answer": "Sim. As famílias são bem-vindas. Agradecemos apenas que indiquem antecipadamente o número total de crianças presentes."
+      "answer": "Sim. As famílias são bem-vindas. Agradecemos apenas que indiquem antecipadamente o número total de crianças presente."
     },
     {
       "question": "Onde estacionar?",

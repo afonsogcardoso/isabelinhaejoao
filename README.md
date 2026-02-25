@@ -30,7 +30,7 @@ A pasta final para publicar é `dist/`.
 ## Conteúdo editável
 
 - Conteúdo principal: `src/content/site.json`
-- Conteúdo de presentes (público): `src/content/presentes.json`
+- Conteúdo de presente (público): `src/content/presente.json`
 
 ## Carrossel automático de imagens
 
@@ -75,14 +75,14 @@ src/
     GiftCard.astro
     FAQAccordion.astro
   content/
-    presentes.json
+    presente.json
     site.json
   layouts/
     BaseLayout.astro
   pages/
     index.astro
     evento.astro
-    presentes.astro
+    presente.astro
     faq.astro
 public/
   images/carrossel/

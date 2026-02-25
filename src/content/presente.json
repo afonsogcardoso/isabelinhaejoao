@@ -1,0 +1,24 @@
+{
+  "introducao": "A vossa presença é, sem dúvida, o maior presente que podemos receber.",
+  "introducao2": "Ainda assim, caso queiram contribuir para a nossa lua de mel ou para a nossa casa, ficamos muito agradecidos e deixamos abaixo os detalhes.",
+  "detalhesPagamento": [
+    {
+      "nome": "Isabelinha e João",
+      "iban": "PT50 0023 0000 4576 7687 8029 4",
+      "telefone1": "+351 929 118 713",
+      "telefone2": "+351 917 037 801"
+    }
+  ],
+  "itens": [
+    {
+      "nome": "Lua de Mel",
+      "valor": "Jantes, atividades e experiências durante a nossa lua de mel na Indonésia!",
+      "imagem": "/images/presente/indonesia.jpeg"
+    },
+    {
+      "nome": "Casa",
+      "valor": "A nossa casa, para que possamos criar um lar cheio de amor e memórias felizes.",
+      "imagem": "/images/presente/casa.png"
+    }
+  ]
+}
