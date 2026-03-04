@@ -52,8 +52,9 @@ Este projeto já inclui `/.github/workflows/deploy.yml` com deploy automático p
 
 O workflow calcula automaticamente:
 
-- `BASE_PATH` correto para páginas de projeto (`/<repo>/`) ou root (`/`) quando o repositório é `<owner>.github.io`
-- `SITE_URL` com base no owner (`https://<owner>.github.io`)
+- Se existir `public/CNAME`, usa domínio custom (ex.: `isabelinhaejoao.pt`) com `BASE_PATH=/`
+- Sem `public/CNAME`, usa páginas de projeto (`/<repo>/`) ou root (`/`) quando o repositório é `<owner>.github.io`
+- `SITE_URL` acompanha o tipo de deploy (domínio custom ou `https://<owner>.github.io`)
 
 ### 3. Ativar Pages
 

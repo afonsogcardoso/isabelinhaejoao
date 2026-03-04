@@ -35,14 +35,19 @@ jobs:
         run: |
           REPO_NAME="${GITHUB_REPOSITORY#*/}"
           OWNER="${GITHUB_REPOSITORY_OWNER}"
-
-          if [ "$REPO_NAME" = "$OWNER.github.io" ]; then
+          if [ -f "public/CNAME" ]; then
+            CUSTOM_DOMAIN="$(tr -d '\r\n[:space:]' < public/CNAME)"
             echo "BASE_PATH=/" >> "$GITHUB_ENV"
+            echo "SITE_URL=https://$CUSTOM_DOMAIN" >> "$GITHUB_ENV"
           else
-            echo "BASE_PATH=/$REPO_NAME/" >> "$GITHUB_ENV"
-          fi
+            if [ "$REPO_NAME" = "$OWNER.github.io" ]; then
+              echo "BASE_PATH=/" >> "$GITHUB_ENV"
+            else
+              echo "BASE_PATH=/$REPO_NAME/" >> "$GITHUB_ENV"
+            fi
 
-          echo "SITE_URL=https://$OWNER.github.io" >> "$GITHUB_ENV"
+            echo "SITE_URL=https://$OWNER.github.io" >> "$GITHUB_ENV"
+          fi
 
       - name: Build
         env:
