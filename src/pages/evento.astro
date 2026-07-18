@@ -28,12 +28,12 @@ const photoAlbumUrl = 'https://pov.camera/qr/E7963AE0-775F-4F39-A2E2-F49204B7AC6
       </div>
 
       <aside class="photo-share" aria-label="Partilhar fotografias do casamento">
-        <p class="photo-share-eyebrow">📸 As vossas fotos</p>
-        <h2 class="photo-share-title">Guardem este dia connosco</h2>
-        <p class="photo-share-text">
-          Tirem e partilhem as vossas fotografias no nosso álbum. Basta abrir o link
-          — ou ler o QR Code que estará disponível no dia.
-        </p>
+        <div class="photo-share-body">
+          <p class="photo-share-eyebrow">📸 As vossas fotos</p>
+          <p class="photo-share-text">
+            Partilhem as vossas fotografias no nosso álbum — pelo link ou pelo QR&nbsp;Code no dia.
+          </p>
+        </div>
         <a class="btn btn-primary photo-share-btn" href={photoAlbumUrl} target="_blank" rel="noopener noreferrer">
           Abrir álbum de fotos
         </a>
@@ -45,41 +45,54 @@ const photoAlbumUrl = 'https://pov.camera/qr/E7963AE0-775F-4F39-A2E2-F49204B7AC6
 
   <style>
     .photo-share {
-      margin: 2.6rem auto 0;
-      max-width: 34rem;
-      padding: 1.6rem 1.5rem 1.75rem;
-      text-align: center;
+      margin: 1.6rem auto 0;
+      max-width: 40rem;
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.9rem 1.25rem;
       background: color-mix(in srgb, var(--accent-soft) 55%, white);
       border: 1px solid var(--line-strong);
       border-radius: var(--radius);
       box-shadow: var(--shadow-soft);
     }
 
+    .photo-share-body {
+      flex: 1 1 15rem;
+      min-width: 0;
+    }
+
     .photo-share-eyebrow {
       margin: 0;
-      font-size: 0.85rem;
-      letter-spacing: 0.06em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
       color: var(--muted);
     }
 
-    .photo-share-title {
-      margin: 0.4rem 0 0;
-      font-size: 1.4rem;
-    }
-
     .photo-share-text {
-      margin: 0.6rem auto 0;
-      max-width: 26rem;
-      color: var(--muted);
-      line-height: 1.55;
+      margin: 0.3rem 0 0;
+      font-size: 0.98rem;
+      line-height: 1.45;
     }
 
     .photo-share-btn {
-      margin-top: 1.15rem;
+      flex: 0 0 auto;
     }
 
-    @media (max-width: 520px) {
+    @media (max-width: 560px) {
+      .photo-share {
+        padding: 1.1rem 1.15rem 1.2rem;
+        text-align: center;
+      }
+
+      .photo-share-body {
+        flex-basis: 100%;
+      }
+
       .photo-share-btn {
         width: 100%;
       }
