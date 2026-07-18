@@ -5,6 +5,8 @@ import QuickNav from '../components/QuickNav.astro';
 import siteContent from '../content/site.json';
 
 const { events } = siteContent;
+
+const photoAlbumUrl = 'https://pov.camera/qr/E7963AE0-775F-4F39-A2E2-F49204B7AC64';
 ---
 
 <BaseLayout title="O dia 18 · Isabelinha e João" description="Agenda, locais e mapas do dia do casamento.">
@@ -24,8 +26,76 @@ const { events } = siteContent;
           ))
         }
       </div>
+
+      <aside class="photo-share" aria-label="Partilhar fotografias do casamento">
+        <div class="photo-share-body">
+          <p class="photo-share-eyebrow">📸 As vossas fotos</p>
+          <p class="photo-share-text">
+            Partilhem as vossas fotografias no nosso álbum — pelo link ou pelo QR&nbsp;Code no dia.
+          </p>
+        </div>
+        <a class="btn btn-primary photo-share-btn" href={photoAlbumUrl} target="_blank" rel="noopener noreferrer">
+          Abrir álbum de fotos
+        </a>
+      </aside>
     </div>
   </section>
 
   <QuickNav />
+
+  <style>
+    .photo-share {
+      margin: 1.6rem auto 0;
+      max-width: 40rem;
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.9rem 1.25rem;
+      background: color-mix(in srgb, var(--accent-soft) 55%, white);
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .photo-share-body {
+      flex: 1 1 15rem;
+      min-width: 0;
+    }
+
+    .photo-share-eyebrow {
+      margin: 0;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .photo-share-text {
+      margin: 0.3rem 0 0;
+      font-size: 0.98rem;
+      line-height: 1.45;
+    }
+
+    .photo-share-btn {
+      flex: 0 0 auto;
+    }
+
+    @media (max-width: 560px) {
+      .photo-share {
+        padding: 1.1rem 1.15rem 1.2rem;
+        text-align: center;
+      }
+
+      .photo-share-body {
+        flex-basis: 100%;
+      }
+
+      .photo-share-btn {
+        width: 100%;
+      }
+    }
+  </style>
 </BaseLayout>
